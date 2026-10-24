@@ -6,6 +6,12 @@ https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5
 Copyright 2026 The Lean-Proofs Authors.
 Licensed under the Apache License, Version 2.0.
 
+Port changes: add Lean module/public exposure declarations; pin Lean/Mathlib
+4.35.0-rc2; use Mathlib's updated turanNumber_two API for the Mantel bound;
+replace an unavailable upstream prose-file reference
+with README.md; duplicate the complete proof in compact Challenge formatting.
+No mathematical hypothesis or conclusion is weakened.
+
 The original header credits Noga Alon, Péter Frankl, Shagnik Das,
 Roman Glebov and Benny Sudakov for informal mathematics, and Codex /
 GPT-5.6 Sol for formalization. This notice preserves those credits without

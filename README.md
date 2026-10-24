@@ -70,11 +70,13 @@ selects the theorem and allows only `propext`, `Classical.choice`, and
 `Quot.sound`. Comparator must verify the matching theorem types and permitted
 axioms; Palomar additionally performs its own mechanical and editorial checks.
 
-The original, unported source was compiled with Lean/Mathlib 4.33.1 and
-reported only those three axioms. That check does not establish that this
-port or a later commit passes. Check current build and Comparator evidence
-for the exact submitted commit. No Palomar registration or NanoDa pass is
-claimed in advance.
+Both ported modules passed a full local `lake build` with Lean/Mathlib
+4.35.0-rc2 on 24 October 2026. The Solution's final axiom report lists only
+`propext`, `Classical.choice`, and `Quot.sound`. Neither source contains
+`sorry`, `admit`, custom axioms, `unsafe`, or `native_decide`.
+Check the Palomar preflight report for independent Comparator/NanoDa evidence
+at the exact submitted commit. No registration or NanoDa pass is claimed
+in advance.
 
 ## Provenance and review
 

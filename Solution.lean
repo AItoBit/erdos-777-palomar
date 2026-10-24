@@ -1660,13 +1660,11 @@ lemma four_mul_edges_le_sq_of_triangleFree
     (hG : G.CliqueFree 3) :
     4 * G.edgeFinset.card ≤ Fintype.card V ^ 2 := by
   have h := hG.card_edgeFinset_le (r := 2)
-  simp only [Nat.reduceSub, Nat.mul_one, Nat.reduceMul,
-    Nat.choose_eq_zero_of_lt (Nat.mod_lt _ (by omega : 0 < 2))] at h
+  rw [SimpleGraph.turanNumber_two] at h
   calc
-    4 * G.edgeFinset.card ≤ 4 * ((Fintype.card V ^ 2 - (Fintype.card V % 2) ^ 2) / 4) :=
+    4 * G.edgeFinset.card ≤ 4 * (Fintype.card V ^ 2 / 4) :=
       Nat.mul_le_mul_left 4 h
-    _ ≤ Fintype.card V ^ 2 - (Fintype.card V % 2) ^ 2 := Nat.mul_div_le _ _
-    _ ≤ Fintype.card V ^ 2 := Nat.sub_le _ _
+    _ ≤ Fintype.card V ^ 2 := Nat.mul_div_le _ _
 
 /-- The graph-theoretic deduction of the first answer from the sparse-triangle
 theorem.  The only deep set-system input is isolated in

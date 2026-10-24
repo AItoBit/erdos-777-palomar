@@ -96,11 +96,12 @@ review:
   notes: >-
     An agent separately audited the original statement against the problem
     and inspected the relevant cited results. This is not human peer review.
-    The original source compiled with Lean/Mathlib 4.33.1 and its main theorem
-    used only propext, Classical.choice, and Quot.sound. That earlier run
-    does not certify this port. Current build and Comparator results must
-    be established for the submitted commit; Palomar and NanoDa verification
-    are not claimed here in advance.
+    The original source compiled with Lean/Mathlib 4.33.1. Both ported modules
+    subsequently passed lake build with Lean/Mathlib 4.35.0-rc2; the printed
+    axiom dependencies of the final Solution theorem are only propext,
+    Classical.choice, and Quot.sound. No source proof holes occur in either
+    module. Palomar Comparator and NanoDa verification are not claimed in
+    advance; consult the full preflight report for the exact submitted commit.
 alignment:
   namespace: Erdos777
   statements:
