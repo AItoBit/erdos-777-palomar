@@ -1,0 +1,119 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: v0.4
+project:
+  name: "Erdős Problem 777: comparable pairs in set families"
+  description: >-
+    A Lean formalization of the three-part Daykin–Erdős problem on comparable
+    pairs in families of subsets of an n-element set. The first assertion,
+    giving fewer than 2^n comparable pairs below (2-epsilon)2^(n/2) members
+    in sufficiently large dimension, holds. The proposed bound
+    m = O_c(2^(n/2)) for positive comparable-pair density is false.
+    The third assertion, that more than m^(2-delta) comparable pairs forces
+    m < (2+epsilon)^(n/2), holds uniformly in dimension for a suitable
+    positive delta. This is an attributed port of an existing complete
+    formalization, with no claim of mathematical or formalization novelty.
+  authors: ["AItoBit"]
+  responsible_maintainers: ["AItoBit"]
+  license: Apache-2.0
+sources:
+  - title: "Erdős Problem 777 and its discussion"
+    authors: ["Thomas F. Bloom"]
+    id: "https://www.erdosproblems.com/forum/thread/777"
+    type: "web discussion"
+    relationship: formalizes
+    contributors:
+      - name: "David E. Daykin"
+        role: "problem-proposer"
+      - name: "Paul Erdős"
+        role: "problem-proposer"
+    note: "The three numbered questions, resolved in the order yes, no, yes."
+    author_endorsement: not-contacted
+  - title: "The maximum number of disjoint pairs in a family of subsets"
+    authors: ["Noga Alon", "Péter Frankl"]
+    id: "https://web.math.princeton.edu/~nalon/PDFS/Publications/The%20maximum%20number%20of%20disjoint%20pairs%20in%20a%20family%20of%20subsets.pdf"
+    type: paper
+    relationship: background
+    note: "Graphs and Combinatorics 1 (1985), 13–21; historical source for the Daykin–Erdős questions and their resolution."
+    author_endorsement: not-contacted
+  - title: "Comparable pairs in families of sets"
+    authors: ["Noga Alon", "Shagnik Das", "Roman Glebov", "Benny Sudakov"]
+    id: "https://www.cs.tau.ac.il/~nogaa/PDFS/compairs4.pdf"
+    type: paper
+    relationship: background
+    note: "Extremal-set-theory context and related comparable-pair bounds; the submitted proof is copied and adapted from the attributed Lean development below."
+    author_endorsement: not-contacted
+related_formalizations:
+  - id: "https://github.com/plby/lean-proofs/blob/8822f7ddef30fadbd92e1c6ab4ed897af356af5e/src/latest/ErdosProblems/Erdos777.lean"
+    relationship: adapts
+    note: >-
+      The complete substantive proof is copied into Solution.lean and ported to
+      Lean's module system and the pinned toolchain. Original copyright is
+      2026 The Lean-Proofs Authors, under Apache-2.0. The upstream header
+      credits Codex and GPT-5.6 Sol for formalization; those systems are
+      credited under automation, not listed as human authors. AItoBit is
+      the responsible human account for this submission and packaging.
+classification:
+  arxiv: [math.CO]
+  msc2020: ["05D05", "05C35"]
+status:
+  scope: "All three questions of Erdős Problem 777, in one conjunction."
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: [propext, Classical.choice, Quot.sound]
+  main_results:
+    - declaration: Erdos777.erdos_777
+      file: Solution.lean
+      sorry_count: 0
+      axioms: [propext, Classical.choice, Quot.sound]
+      comparator_config: comparator.json
+      literature_dependencies: []
+automation:
+  methods:
+    - method: agent
+      models: ["GPT-5.6 Sol"]
+      framework: Codex
+      tool_setup: "Original formalization, as credited by the upstream source header; original prompts and run costs were not reconstructed."
+    - method: agent
+      framework: Codex
+      tool_setup: "Source retrieval, statement audit, Lean verification of the original source, module-system port, metadata preparation, and submission assistance."
+      prompting_notes: "The user requested a complete proof without sorry and subsequently requested submission to Palomar."
+  notes: >-
+    No new mathematical discovery or new proof authorship is claimed.
+    The human submitter confirmed responsibility as an author or maintainer
+    of the underlying formalization. The full proof is included here;
+    there is no external plby/lean-proofs dependency.
+fidelity:
+  divergences: >-
+    The ground set is Fin n instead of {1,...,n}; this is a relabeling.
+    Edges are unordered strict comparable pairs of distinct family members.
+    Q1 retains its sufficiently-large-n quantifier and strict conclusion.
+    Q2 is the negation of a uniform constant bound; its counterexamples also
+    refute an eventual interpretation. Q3 retains all dimensions, including
+    small dimensions and empty families. See FIDELITY.md.
+review:
+  status: agent-reviewed
+  reviewers: ["Codex source-fidelity audit"]
+  notes: >-
+    An agent separately audited the original statement against the problem
+    and inspected the relevant cited results. This is not human peer review.
+    The original source compiled with Lean/Mathlib 4.33.1 and its main theorem
+    used only propext, Classical.choice, and Quot.sound. That earlier run
+    does not certify this port. Current build and Comparator results must
+    be established for the submitted commit; Palomar and NanoDa verification
+    are not claimed here in advance.
+alignment:
+  namespace: Erdos777
+  statements:
+    - source: "Problem 777, question 1"
+      lean: Erdos777.firstQuestion_true
+      module: Solution
+      status: proved
+    - source: "Problem 777, negation of question 2"
+      lean: Erdos777.secondQuestion_false
+      module: Solution
+      status: proved
+    - source: "Problem 777, question 3"
+      lean: Erdos777.thirdQuestion_true
+      module: Solution
+      status: proved
+acknowledgements: "The Lean-Proofs Authors; the authors of the cited mathematical works; Lean and Mathlib contributors."

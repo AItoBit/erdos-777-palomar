@@ -1,0 +1,6 @@
+.lake/
+*.olean
+*.ilean
+*.ir
+*.olean.*
+*.ir.sig
